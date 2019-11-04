@@ -8,6 +8,8 @@ import org.json.simple.*;
 
 public class MysqlCon
 {  
+	/*This method returns number of Active DB connections
+	history is getting maintained*/	
 	public Connection getMySQLconnnection() throws Exception 
 	{
 		FileReader reader=new FileReader("db.properties");  

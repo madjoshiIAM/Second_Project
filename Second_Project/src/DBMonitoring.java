@@ -110,19 +110,6 @@ public class DBMonitoring
 			return false;
 		}
 	}
-	
-	public boolean isWebsiteActiveOrNot(String targetUrl) throws Exception
-	{
-		HttpURLConnection httpUrlConn = null;
-		try 
-		{
-			httpUrlConn =  (HttpURLConnection) new URL(targetUrl).openConnection();
-			return (httpUrlConn.getResponseCode() == HttpURLConnection.HTTP_OK);
-		}catch(Exception malformedURL) {
-			//malURL.printStackTrace();
-			return false;
-		}
-	}
 
 	public JSONObject databaseMonitoring() throws Exception
 	{

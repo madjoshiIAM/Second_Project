@@ -67,19 +67,6 @@ public class MysqlCon
 		stmt.close();
 		return returnVal;
 	}	
-	
-	/*This method returns value from database based on column name and mysql query*/
-	public Object getRequiredDBDetails1(Connection conn, String colSelect, String query) throws Exception { 
-		Statement stmt 		= conn.createStatement();  
-		ResultSet rs 		= stmt.executeQuery(query);
-		Object returnVal 	= null;
-		while(rs.next()) 
-		{
-			returnVal = rs.getObject(colSelect);
-		}
-		stmt.close();
-		return returnVal;
-	}	
 	/*This method gives the CPU load with given process name*/
 	public double getCPULoadByProcessName(String processName) throws Exception
 	{
@@ -139,22 +126,6 @@ public class MysqlCon
 		return obj;
 	}
 		
-	public JSONObject databaseMonitoring1() throws Exception
-	{
-		Connection con = getMySQLconnnection();
-		JSONObject obj = new JSONObject();
-		obj.put("DatabaseName", "apac_bot_instance");
-		obj.put("Connections", getNumberOfConnections(con));
-		obj.put("Active Connection", getActiveNumberOfConnections(con));
-		obj.put("Database Size(MB)", getDbSizeInMB(con, "apac_bot_instance"));
-		obj.put("Free Memory Space(MB)", getFreeStorageSpaceInMB(con, "apac_bot_instance"));
-		obj.put("CPU Load", getCPULoadByProcessName("mysqld"));
-		System.out.print(obj);
-		con.close();
-		return obj;
-	}
-		
-	
 	public static void main(String args[]) throws Exception
 	{  
 		MysqlCon mysql = new MysqlCon();

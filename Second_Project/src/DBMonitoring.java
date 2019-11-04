@@ -18,16 +18,6 @@ public class DBMonitoring
 		return DriverManager.getConnection(p.getProperty("URL"),p.getProperty("Username"),p.getProperty("Password"));
 	}
 	
-	public Connection getMySQLconnnectionBasedOnInput(String connectionName) throws Exception 
-	{
-		FileReader reader=new FileReader("db.properties");  
-		Properties p=new Properties();  
-		p.load(reader);  
-
-		Class.forName(p.getProperty("mysql_driver"));
-		return DriverManager.getConnection(p.getProperty("URL"),p.getProperty("Username"),p.getProperty("Password"));
-	}
-	
 	/*This method returns number of Active DB connections*/	
 	public String getActiveNumberOfConnections(Connection conn) throws Exception
 	{
@@ -109,19 +99,6 @@ public class DBMonitoring
 	}
 	
 	public boolean isWebsiteActive(String targetUrl) throws Exception
-	{
-		HttpURLConnection httpUrlConn = null;
-		try 
-		{
-			httpUrlConn =  (HttpURLConnection) new URL(targetUrl).openConnection();
-			return (httpUrlConn.getResponseCode() == HttpURLConnection.HTTP_OK);
-		}catch(Exception malformedURL) {
-			//malURL.printStackTrace();
-			return false;
-		}
-	}
-	
-	public boolean isWebsiteActiveOrNot(String targetUrl) throws Exception
 	{
 		HttpURLConnection httpUrlConn = null;
 		try 

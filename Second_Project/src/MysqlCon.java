@@ -67,19 +67,6 @@ public class MysqlCon
 		stmt.close();
 		return returnVal;
 	}	
-	
-	/*This method returns value from database based on column name and mysql query*/
-	public Object getRequiredDBDetails1(Connection conn, String colSelect, String query) throws Exception { 
-		Statement stmt 		= conn.createStatement();  
-		ResultSet rs 		= stmt.executeQuery(query);
-		Object returnVal 	= null;
-		while(rs.next()) 
-		{
-			returnVal = rs.getObject(colSelect);
-		}
-		stmt.close();
-		return returnVal;
-	}	
 	/*This method gives the CPU load with given process name*/
 	public double getCPULoadByProcessName(String processName) throws Exception
 	{

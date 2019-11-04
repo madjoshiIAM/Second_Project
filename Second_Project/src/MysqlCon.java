@@ -139,6 +139,22 @@ public class MysqlCon
 		return obj;
 	}
 		
+	public JSONObject databaseMonitoring1() throws Exception
+	{
+		Connection con = getMySQLconnnection();
+		JSONObject obj = new JSONObject();
+		obj.put("DatabaseName", "apac_bot_instance");
+		obj.put("Connections", getNumberOfConnections(con));
+		obj.put("Active Connection", getActiveNumberOfConnections(con));
+		obj.put("Database Size(MB)", getDbSizeInMB(con, "apac_bot_instance"));
+		obj.put("Free Memory Space(MB)", getFreeStorageSpaceInMB(con, "apac_bot_instance"));
+		obj.put("CPU Load", getCPULoadByProcessName("mysqld"));
+		System.out.print(obj);
+		con.close();
+		return obj;
+	}
+		
+	
 	public static void main(String args[]) throws Exception
 	{  
 		MysqlCon mysql = new MysqlCon();
